@@ -5,7 +5,8 @@ import Icon from '../components/Icon'
 import Reveal from '../components/Reveal'
 import { PageHero, StatsBar, WhyChoose, CtaBand, Testimonials, Lightbox, usePageMeta } from '../components/Sections'
 import { useQuote } from '../components/QuoteModal'
-import { useContent, useSettings } from '../lib/ContentContext'
+import { useContent, useSettings, useCollection } from '../lib/ContentContext'
+import TeamCard from '../components/TeamCard'
 import { cx, telLink } from '../lib/utils'
 
 const lines = (t) => String(t || '').split('\n').map((x) => x.trim()).filter(Boolean)
@@ -35,6 +36,9 @@ export default function About() {
   const [lb, setLb] = useState(-1)
   usePageMeta('About Us', a.hero_text)
   const sheets = (a.datasheets || []).filter((d) => d.image)
+  const tp = useContent('team_page')
+  const teamAll = useCollection('team')
+  const team = (teamAll.some((m) => m.featured) ? teamAll.filter((m) => m.featured) : teamAll).slice(0, 4)
 
   return (
     <>
@@ -331,6 +335,18 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {team.length > 0 && (
+        <section className="bg-[#f5f8f5]">
+          <div className="container-x py-16 lg:py-20">
+            <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div><p className="eyebrow">Our People</p><h2 className="h2 mt-2">{tp.about_strip_title}</h2></div>
+              <Link to="/team" className="group inline-flex shrink-0 items-center gap-2 self-start rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-bold text-brand-800 transition hover:bg-brand-800 hover:text-white md:self-auto">View Full Team <ArrowRight className="h-4 w-4" /></Link>
+            </div>
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-6">{team.map((m, i) => <Reveal key={m.id} delay={i * 70} className="w-[calc(50%-8px)] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)]"><TeamCard m={m} compact /></Reveal>)}</div>
+          </div>
+        </section>
+      )}
 
       <WhyChoose title={`Why Choose ${s.company_name}?`} videoImage={a.video_image} videoUrl={a.video_url} videoTitle={a.video_title} videoSub={a.video_sub} />
       <Testimonials />

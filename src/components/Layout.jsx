@@ -11,6 +11,7 @@ export const NAV = [
   { to: '/products', label: 'Products' },
   { to: '/projects', label: 'Projects' },
   { to: '/clients', label: 'Clients' },
+  { to: '/team', label: 'Team' },
   { to: '/industries', label: 'Industries' },
   { to: '/services', label: 'Services' },
   { to: '/gallery', label: 'Gallery' },
@@ -119,24 +120,24 @@ function Header() {
       <header className={cx('sticky top-0 z-50 bg-white/95 backdrop-blur transition-shadow', scrolled && 'shadow-[0_6px_24px_-12px_rgba(0,0,0,.25)]')}>
         <div className="container-x flex h-[72px] items-center justify-between gap-4">
           <Logo />
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="hidden items-center gap-0.5 xl:flex">
             {NAV.map((n) => (
-              <NavLink key={n.to} to={n.to} end={n.to === '/'} className={({ isActive }) => cx('relative px-2 py-2 text-[13.5px] font-semibold transition hover:text-brand-700 xl:px-3 xl:text-[14px]', isActive ? 'text-brand-800 after:absolute after:inset-x-2 xl:after:inset-x-3 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-gold-400' : 'text-gray-700')}>
+              <NavLink key={n.to} to={n.to} end={n.to === '/'} className={({ isActive }) => cx('relative px-2.5 py-2 text-[14px] font-semibold transition hover:text-brand-700 2xl:px-3', isActive ? 'text-brand-800 after:absolute after:inset-x-2.5 2xl:after:inset-x-3 after:-bottom-0.5 after:h-[3px] after:rounded-full after:bg-gold-400' : 'text-gray-700')}>
                 {n.label}
               </NavLink>
             ))}
           </nav>
           <div className="flex items-center gap-1.5">
             <button onClick={() => setSearch(true)} className="grid h-10 w-10 place-items-center rounded-full hover:bg-gray-100" aria-label="Search"><Search className="h-5 w-5" /></button>
-            <button onClick={() => open()} className="btn-gold btn-sm hidden sm:inline-flex lg:hidden">Get a Quote</button>
-            <button onClick={() => setMenu(true)} className="grid h-10 w-10 place-items-center rounded-full bg-brand-800 text-white lg:hidden" aria-label="Menu"><Menu className="h-5 w-5" /></button>
+            <button onClick={() => open()} className="btn-gold btn-sm hidden sm:inline-flex xl:hidden">Get a Quote</button>
+            <button onClick={() => setMenu(true)} className="grid h-10 w-10 place-items-center rounded-full bg-brand-800 text-white xl:hidden" aria-label="Menu"><Menu className="h-5 w-5" /></button>
           </div>
         </div>
         {s.announcement && <div className="bg-gold-400 py-1.5 text-center text-xs font-semibold text-ink">{s.announcement}</div>}
       </header>
 
       {menu && (
-        <div className="fixed inset-0 z-[70] lg:hidden">
+        <div className="fixed inset-0 z-[70] xl:hidden">
           <div className="absolute inset-0 bg-ink/60" onClick={() => setMenu(false)} />
           <aside className="absolute right-0 top-0 flex h-full w-[86%] max-w-sm flex-col bg-brand-900 text-white shadow-2xl animate-fadeUp">
             <div className="flex items-center justify-between border-b border-white/10 p-4">

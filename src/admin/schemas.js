@@ -188,6 +188,20 @@ export const CONTENT_SCHEMAS = {
   projects_page: { label: 'Projects Page', sections: [{ title: 'Hero', fields: heroFields }, { title: 'Bottom CTA', fields: ctaFields }] },
   industries_page: { label: 'Industries Page', sections: [{ title: 'Hero', fields: heroFields }, { title: 'Section', fields: [{ name: 'section_eyebrow', label: 'Eyebrow', type: 'text' }, { name: 'section_title', label: 'Title', type: 'text' }, { name: 'section_text', label: 'Text', type: 'textarea', rows: 2 }] }, { title: 'Bottom CTA', fields: [...ctaFields, { name: 'cta_button', label: 'Button', type: 'text' }] }] },
   services_page: { label: 'Services Page', sections: [{ title: 'Hero', fields: heroFields }, { title: 'Section', fields: [{ name: 'section_title', label: 'Title', type: 'text' }, { name: 'section_text', label: 'Text', type: 'textarea', rows: 2 }, { name: 'benefits', label: 'Benefits row', type: 'repeater', fields: [{ name: 'icon', label: 'Icon', type: 'icon' }, { name: 'title', label: 'Title', type: 'text' }, { name: 'text', label: 'Text', type: 'text' }] }] }, { title: 'Bottom CTA', fields: [...ctaFields, { name: 'cta_button', label: 'Button', type: 'text' }] }] },
+  team_page: {
+    label: 'Team Page',
+    note: 'Team members are managed under Content → Team.',
+    sections: [
+      { title: 'Hero', fields: heroFields },
+      { title: 'Team section', fields: [
+        { name: 'section_eyebrow', label: 'Eyebrow', type: 'text' }, { name: 'section_title', label: 'Title', type: 'text' }, { name: 'section_text', label: 'Text', type: 'textarea', rows: 2 },
+        { name: 'group_by_department', label: 'Group members by department', type: 'switch' },
+        { name: 'empty_text', label: 'Text shown when no members are visible', type: 'text' },
+        { name: 'about_strip_title', label: 'Heading of the team strip on the About page', type: 'text' },
+      ] },
+      { title: 'Bottom CTA', fields: [...ctaFields, { name: 'cta_button', label: 'Button', type: 'text' }] },
+    ],
+  },
   clients_page: {
     label: 'Clients Page',
     note: 'Client names/logos are managed under Content → Clients, reviews under Content → Testimonials.',
@@ -304,6 +318,22 @@ export const COLLECTION_SCHEMAS = {
       { name: 'photo', label: 'Client photo (optional)', type: 'image' },
       { name: 'video_url', label: 'Video testimonial (optional — upload MP4 or YouTube link)', type: 'video' },
       { name: 'phone', label: 'Client phone (internal only, never shown on website)', type: 'text' },
+    ],
+  },
+  team: {
+    label: 'Team', singular: 'Team Member', titleField: 'name', subField: 'designation', imageField: 'photo', grid: true,
+    note: 'Photos are cropped automatically to the same portrait frame. Use “Photo focus” if a face is cut off. Starred members also appear on the About page.',
+    fields: [
+      { name: 'photo', label: 'Photo (portrait works best)', type: 'image' },
+      { name: 'photo_position', label: 'Photo focus', type: 'select', options: [{ value: 'top', label: 'Top (faces)' }, { value: 'center', label: 'Center' }, { value: 'bottom', label: 'Bottom' }], half: true },
+      { name: 'featured', label: 'Show on About page', type: 'switch', half: true },
+      { name: 'name', label: 'Name', type: 'text', required: true, half: true },
+      { name: 'designation', label: 'Designation', type: 'text', required: true, half: true },
+      { name: 'department', label: 'Department (e.g. Leadership, Engineering)', type: 'text' },
+      { name: 'bio', label: 'Short bio (optional)', type: 'textarea', rows: 3 },
+      { name: 'phone', label: 'Phone (optional)', type: 'text', half: true },
+      { name: 'email', label: 'Email (optional)', type: 'text', half: true },
+      { name: 'linkedin', label: 'LinkedIn URL (optional)', type: 'text' },
     ],
   },
   clients: {

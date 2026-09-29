@@ -368,6 +368,31 @@ export const defaultContent = {
     cta_button: 'Talk to Our Experts',
   },
 
+  team_page: {
+    hero_eyebrow: 'Team',
+    hero_title: 'Our',
+    hero_highlight: 'Team',
+    hero_subtitle: 'The People Behind Every Project',
+    hero_text: 'Engineers, fabricators and service specialists who design, build, install and support rice mill and paddy drying systems across India.',
+    hero_image: img('gal-9.jpg'),
+    hero_side_text: 'Skilled People\nReliable Solutions',
+    hero_badges: [
+      { icon: 'HardHat', label: 'Experienced Engineers' },
+      { icon: 'Hammer', label: 'Skilled Fabricators' },
+      { icon: 'Wrench', label: 'Installation Crew' },
+      { icon: 'Headphones', label: 'Service Support' },
+    ],
+    section_eyebrow: 'Meet the Team',
+    section_title: 'Experienced People. Dependable Work.',
+    section_text: 'Our team brings together design, manufacturing, erection and after-sales expertise under one roof.',
+    group_by_department: true,
+    empty_text: 'Team profiles will be added soon.',
+    about_strip_title: 'Meet Our Team',
+    cta_title: 'Work With Our Team',
+    cta_text: 'Talk to our engineers about your paddy dryer, rice mill or fabrication requirement.',
+    cta_button: 'Contact Our Team',
+  },
+
   clients_page: {
     hero_eyebrow: 'Clients',
     hero_title: 'Our',
@@ -590,6 +615,13 @@ export const defaultCollections = {
 
   // Client logos / names shown on the Clients page and the Home page strip.
   // Samples are hidden (is_active: false) — replace them with real clients in Admin → Clients and switch them on.
+  // Team members — samples are hidden. Replace with real people in Admin → Team and switch them on.
+  team: [
+    { ...item({ name: 'Sample Name', designation: 'Founder & Managing Director', department: 'Leadership', photo: '', photo_position: 'top', bio: '', phone: '', email: '', linkedin: '', featured: true }), is_active: false },
+    { ...item({ name: 'Sample Name', designation: 'Design Engineer', department: 'Engineering', photo: '', photo_position: 'top', bio: '', phone: '', email: '', linkedin: '', featured: true }), is_active: false },
+    { ...item({ name: 'Sample Name', designation: 'Service Head', department: 'Installation & Service', photo: '', photo_position: 'top', bio: '', phone: '', email: '', linkedin: '', featured: true }), is_active: false },
+  ],
+
   clients: [
     { ...item({ name: 'Sample Client – Rice Mill', location: 'Andhra Pradesh', industry: 'Rice Mill', logo: '', website: '', project: '100 TPD Rice Mill Plant', featured: true }), is_active: false },
     { ...item({ name: 'Sample Client – Parboiling Unit', location: 'Karnataka', industry: 'Parboiling Plant', logo: '', website: '', project: 'Paddy Dryer & Parboiling Plant', featured: true }), is_active: false },

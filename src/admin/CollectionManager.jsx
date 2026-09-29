@@ -183,15 +183,15 @@ export default function CollectionManager() {
           {filtered.map((it) => (
             <div key={it.id} draggable={canReorder} onDragStart={() => setDragId(it.id)} onDragOver={(e) => e.preventDefault()} onDrop={() => onDrop(it.id)}
               className={cx('card group overflow-hidden', it.is_active === false && 'opacity-50', dragId === it.id && 'ring-2 ring-gold-400')}>
-              <div className="relative aspect-[4/3] bg-gray-100">
-                <img src={it[schema.imageField]} alt="" className="h-full w-full object-cover" />
+              <div className={cx('relative bg-gray-100', collection === 'team' ? 'aspect-[4/5]' : 'aspect-[4/3]')}>
+                {it[schema.imageField] ? <img src={it[schema.imageField]} alt="" className="h-full w-full object-cover object-top" /> : <div className="grid h-full place-items-center text-3xl font-bold text-gray-300">{String(it[schema.titleField] || '?')[0]}</div>}
                 <div className="absolute inset-0 flex items-center justify-center gap-2 bg-black/50 opacity-0 transition group-hover:opacity-100">
                   <button onClick={() => setEdit(it)} className="rounded-lg bg-white p-2"><Pencil className="h-4 w-4" /></button>
                   <button onClick={() => toggle(it)} className="rounded-lg bg-white p-2">{it.is_active === false ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}</button>
                   <button onClick={() => remove(it)} className="rounded-lg bg-white p-2 text-red-600"><Trash2 className="h-4 w-4" /></button>
                 </div>
               </div>
-              <div className="px-3 py-2"><p className="truncate text-sm font-semibold">{it[schema.titleField] || <span className="text-gray-400">No caption</span>}</p><p className="truncate text-xs text-gray-500">{catName(it.category) || '—'}</p></div>
+              <div className="px-3 py-2"><p className="truncate text-sm font-semibold">{it[schema.titleField] || <span className="text-gray-400">No caption</span>}</p><p className="truncate text-xs text-gray-500">{(schema.subField === 'category' ? catName(it.category) : it[schema.subField]) || '—'}{it.is_active === false && ' · Hidden'}</p></div>
             </div>
           ))}
         </div>

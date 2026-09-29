@@ -15,6 +15,7 @@ import Services from './pages/Services'
 import ServiceDetail from './pages/ServiceDetail'
 import Gallery from './pages/Gallery'
 import Clients from './pages/Clients'
+import Team from './pages/Team'
 import Contact from './pages/Contact'
 import NotFound from './pages/NotFound'
 
@@ -48,6 +49,7 @@ export default function App() {
             <Route path="services/:slug" element={<ServiceDetail />} />
             <Route path="gallery" element={<Gallery />} />
             <Route path="clients" element={<Clients />} />
+            <Route path="team" element={<Team />} />
             <Route path="contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
           </Route>

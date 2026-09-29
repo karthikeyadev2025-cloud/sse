@@ -10,7 +10,7 @@ import { FieldInput, FieldRow } from './Fields'
 import { PageTitle } from './AdminApp'
 import { siteHref } from '../lib/utils'
 
-const PAGE_URL = { home: '/', about: '/about', products_page: '/products', projects_page: '/projects', industries_page: '/industries', services_page: '/services', gallery_page: '/gallery', clients_page: '/clients', contact_page: '/contact', common: '/', settings: '/' }
+const PAGE_URL = { home: '/', about: '/about', products_page: '/products', projects_page: '/projects', industries_page: '/industries', services_page: '/services', gallery_page: '/gallery', clients_page: '/clients', team_page: '/team', contact_page: '/contact', common: '/', settings: '/' }
 
 export default function ContentEditor() {
   const { key } = useParams()
