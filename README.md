@@ -34,6 +34,10 @@ Admin panel: **http://localhost:5173/admin** — in *Demo mode* the password is 
 6. Restart `npm run dev`, log in at `/admin` with your email & password.
 7. (Password reset emails) Authentication → URL Configuration → add `https://your-domain.com/admin/reset` to *Redirect URLs*.
 
+## Live Supabase project
+The production keys are in `.env.production` (Supabase URL + public anon key), so `npm run build` and Vercel builds connect to the live database automatically — no environment variables needed on Vercel.
+For local development without touching live data, leave `.env` empty (demo mode) or point it at a separate Supabase project.
+
 ## 3. Build & deploy (copy `dist`)
 
 ```bash
