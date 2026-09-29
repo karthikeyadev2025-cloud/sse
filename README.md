@@ -36,6 +36,8 @@ Admin panel: **http://localhost:5173/admin** — in *Demo mode* the password is 
 
 ## Live Supabase project
 The production keys are in `.env.production` (Supabase URL + public anon key), so `npm run build` and Vercel builds connect to the live database automatically — no environment variables needed on Vercel.
+Database calls go through this site's own domain (`/sb/…`, see `vercel.json` and `VITE_SUPABASE_PROXY` in `.env.production`). This keeps the site working for visitors on Indian networks that block `supabase.co`.
+**Hostinger:** the `/sb` route only exists on Vercel — remove the `VITE_SUPABASE_PROXY` line from `.env.production` before `npm run build`.
 For local development without touching live data, leave `.env` empty (demo mode) or point it at a separate Supabase project.
 
 ## 3. Build & deploy (copy `dist`)

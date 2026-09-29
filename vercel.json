@@ -1,1 +1,6 @@
-{ "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
+{
+  "rewrites": [
+    { "source": "/sb/:path*", "destination": "https://xlzuxoylbaukuuzkfays.supabase.co/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

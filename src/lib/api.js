@@ -9,7 +9,11 @@ const clean = (v) => String(v || '').trim().replace(/^['"]|['"]$/g, '').trim()
 const URL_ = clean(import.meta.env.VITE_SUPABASE_URL).replace(/\/(rest|auth)\/v1\/?$/, '').replace(/\/+$/, '')
 const KEY_ = clean(import.meta.env.VITE_SUPABASE_ANON_KEY).replace(/\s+/g, '')
 export const isSupabase = Boolean(URL_ && KEY_)
-export const supabase = isSupabase ? createClient(URL_, KEY_) : null
+// Optional same-domain proxy (e.g. /sb on Vercel) so visitors on networks that block *.supabase.co still work
+const PROXY = clean(import.meta.env.VITE_SUPABASE_PROXY)
+const onLocal = typeof window === 'undefined' || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(window.location.hostname)
+const API_BASE = PROXY && !onLocal ? `${window.location.origin}${PROXY.startsWith('/') ? PROXY : `/${PROXY}`}` : URL_
+export const supabase = isSupabase ? createClient(API_BASE, KEY_, { auth: { storageKey: 'sse-admin-auth' } }) : null
 export const BUCKET = 'media'
 
 const clone = (o) => JSON.parse(JSON.stringify(o))
