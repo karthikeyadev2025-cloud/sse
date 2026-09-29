@@ -121,13 +121,66 @@ export const CONTENT_SCHEMAS = {
   },
   about: {
     label: 'About Page',
+    note: 'Every section of the About page is below. Technology points: one per line.',
     sections: [
       { title: 'Hero', fields: heroFields },
-      { title: 'Story, mission & vision', fields: [
-        { name: 'story_title', label: 'Story title', type: 'text' }, { name: 'story_text', label: 'Story paragraph 1', type: 'textarea' }, { name: 'story_text2', label: 'Story paragraph 2', type: 'textarea' },
-        { name: 'mission', label: 'Mission', type: 'textarea' }, { name: 'vision', label: 'Vision', type: 'textarea' }, { name: 'values', label: 'Values', type: 'list' },
+      { title: 'Who we are', fields: [
+        { name: 'legal_name', label: 'Registered name', type: 'text', half: true }, { name: 'location', label: 'Location', type: 'text', half: true },
+        { name: 'tagline', label: 'Company tagline', type: 'text' },
+        { name: 'story_title', label: 'Section title', type: 'text' }, { name: 'story_text', label: 'Paragraph 1', type: 'textarea' }, { name: 'story_text2', label: 'Paragraph 2', type: 'textarea' },
+        { name: 'story_image', label: 'Image', type: 'image' },
+        { name: 'capabilities', label: 'Capabilities (e.g. Design, Manufacturing…)', type: 'list' },
+        { name: 'product_lines', label: 'Product lines', type: 'list' },
       ] },
-      { title: 'Banner', fields: [{ name: 'banner_text', label: 'Banner text', type: 'text' }, { name: 'banner_image', label: 'Banner image', type: 'image' }] },
+      { title: 'Mission, vision & values', fields: [{ name: 'mission', label: 'Mission', type: 'textarea' }, { name: 'vision', label: 'Vision', type: 'textarea' }, { name: 'values', label: 'Values', type: 'list' }] },
+      { title: 'Why drying matters', fields: [
+        { name: 'why_drying_title', label: 'Title', type: 'text' }, { name: 'why_drying_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'why_drying_points', label: 'Points', type: 'list' }, { name: 'why_drying_image', label: 'Image', type: 'image' },
+        { name: 'moisture_from', label: 'Moisture after parboiling', type: 'text', half: true }, { name: 'moisture_to', label: 'Target moisture', type: 'text', half: true },
+      ] },
+      { title: 'Process flow', fields: [
+        { name: 'process_title', label: 'Title', type: 'text' }, { name: 'process_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'process_steps', label: 'Steps', type: 'repeater', fields: [{ name: 'icon', label: 'Icon', type: 'icon' }, { name: 'title', label: 'Step', type: 'text' }] },
+        { name: 'process_note', label: 'Note below steps', type: 'textarea', rows: 3 },
+      ] },
+      { title: 'Manual vs mechanical', fields: [
+        { name: 'compare_title', label: 'Title', type: 'text' }, { name: 'compare_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'manual_title', label: 'Left column title', type: 'text', half: true }, { name: 'mechanical_title', label: 'Right column title', type: 'text', half: true },
+        { name: 'manual_points', label: 'Left column points', type: 'list' }, { name: 'mechanical_points', label: 'Right column points', type: 'list' },
+      ] },
+      { title: 'Dryer technologies', fields: [
+        { name: 'tech_title', label: 'Title', type: 'text' }, { name: 'tech_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'technologies', label: 'Technology cards', type: 'repeater', fields: [{ name: 'icon', label: 'Icon', type: 'icon' }, { name: 'title', label: 'Title', type: 'text' }, { name: 'tagline', label: 'Tagline', type: 'textarea', rows: 2 }, { name: 'points', label: 'Points (one per line)', type: 'textarea', rows: 5 }, { name: 'image', label: 'Image (optional)', type: 'image' }] },
+      ] },
+      { title: 'Comparison table', fields: [
+        { name: 'table_title', label: 'Title', type: 'text' }, { name: 'table_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'table_headers', label: 'Column headings (4)', type: 'list' },
+        { name: 'table_rows', label: 'Rows', type: 'repeater', fields: [{ name: 'c1', label: 'Parameter', type: 'text' }, { name: 'c2', label: 'Column 2', type: 'text' }, { name: 'c3', label: 'Column 3', type: 'text' }, { name: 'c4', label: 'Column 4', type: 'text' }] },
+      ] },
+      { title: 'PLC automation', fields: [
+        { name: 'automation_title', label: 'Title', type: 'text' }, { name: 'automation_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'automation', label: 'Features', type: 'repeater', fields: [{ name: 'icon', label: 'Icon', type: 'icon' }, { name: 'title', label: 'Title', type: 'text' }, { name: 'text', label: 'Text', type: 'text' }] },
+      ] },
+      { title: 'Capacity range', fields: [
+        { name: 'capacity_title', label: 'Title', type: 'text' }, { name: 'capacity_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'capacities', label: 'Capacity tiers', type: 'repeater', fields: [{ name: 'range', label: 'Range (e.g. 10–20 TPH)', type: 'text' }, { name: 'label', label: 'Label', type: 'text' }, { name: 'text', label: 'Description', type: 'text' }] },
+        { name: 'capacity_note', label: 'Note', type: 'textarea', rows: 2 },
+      ] },
+      { title: 'Specifications, working principle & datasheets', fields: [
+        { name: 'spec_title', label: 'Spec title', type: 'text' }, { name: 'spec_text', label: 'Spec intro', type: 'text' },
+        { name: 'specs', label: 'Specification rows', type: 'specs' },
+        { name: 'principle_title', label: 'Working principle title', type: 'text' }, { name: 'principle_text', label: 'Working principle intro', type: 'text' },
+        { name: 'principle_points', label: 'Working principle steps', type: 'list' },
+        { name: 'datasheets', label: 'Datasheet images (click to zoom on the site)', type: 'repeater', fields: [{ name: 'title', label: 'Title', type: 'text' }, { name: 'image', label: 'Image', type: 'image' }] },
+      ] },
+      { title: 'Business benefits', fields: [
+        { name: 'benefits_title', label: 'Title', type: 'text' }, { name: 'benefits_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'benefits', label: 'Benefits', type: 'repeater', fields: [{ name: 'icon', label: 'Icon', type: 'icon' }, { name: 'title', label: 'Title', type: 'text' }, { name: 'text', label: 'Text', type: 'text' }] },
+      ] },
+      { title: 'How to select a dryer', fields: [
+        { name: 'select_title', label: 'Title', type: 'text' }, { name: 'select_text', label: 'Intro', type: 'textarea', rows: 2 },
+        { name: 'select_points', label: 'Checklist', type: 'list' }, { name: 'select_cta', label: 'Button text', type: 'text' },
+      ] },
       { title: 'Video', fields: [{ name: 'video_image', label: 'Cover image', type: 'image' }, { name: 'video_url', label: 'Video (upload MP4 or paste YouTube link)', type: 'video' }, { name: 'video_title', label: 'Title', type: 'text' }, { name: 'video_sub', label: 'Subtitle', type: 'text' }] },
     ],
   },

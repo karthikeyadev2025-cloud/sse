@@ -186,8 +186,8 @@ export function RepeaterField({ value = [], onChange, fields, ctx }) {
       {list.map((row, i) => (
         <div key={i} className="flex items-start gap-2 rounded-xl border bg-gray-50/60 p-3">
           <GripVertical className="mt-2.5 h-4 w-4 shrink-0 text-gray-300" />
-          <div className={cx('grid flex-1 gap-2', fields.length >= 3 ? 'sm:grid-cols-[160px_1fr_1.4fr]' : 'sm:grid-cols-[180px_1fr]')}>
-            {fields.map((f) => <div key={f.name}><FieldInput field={f} value={row[f.name]} onChange={(v) => upd(i, f.name, v)} ctx={ctx} compact /></div>)}
+          <div className={cx('grid flex-1 gap-2', fields.length >= 4 ? 'sm:grid-cols-2' : fields.length === 3 ? 'sm:grid-cols-[160px_1fr_1.4fr]' : fields.length === 2 ? 'sm:grid-cols-[180px_1fr]' : '')}>
+            {fields.map((f) => <div key={f.name} className={['textarea', 'image'].includes(f.type) && fields.length >= 4 ? 'sm:col-span-2' : ''}>{fields.length >= 4 && <p className="mb-1 text-[11px] font-semibold text-gray-500">{f.label}</p>}<FieldInput field={f} value={row[f.name]} onChange={(v) => upd(i, f.name, v)} ctx={ctx} compact /></div>)}
           </div>
           <div className="flex flex-col gap-1">
             <button type="button" onClick={() => move(i, -1)} className="rounded border bg-white p-1"><ArrowUp className="h-3.5 w-3.5" /></button>
