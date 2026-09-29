@@ -4,8 +4,10 @@
 import { createClient } from '@supabase/supabase-js'
 import { defaultContent, defaultCollections } from '../data/defaults'
 
-const URL_ = import.meta.env.VITE_SUPABASE_URL
-const KEY_ = import.meta.env.VITE_SUPABASE_ANON_KEY
+// Clean values pasted into hosting dashboards (quotes, spaces, new lines, trailing slash or /rest/v1)
+const clean = (v) => String(v || '').trim().replace(/^['"]|['"]$/g, '').trim()
+const URL_ = clean(import.meta.env.VITE_SUPABASE_URL).replace(/\/(rest|auth)\/v1\/?$/, '').replace(/\/+$/, '')
+const KEY_ = clean(import.meta.env.VITE_SUPABASE_ANON_KEY).replace(/\s+/g, '')
 export const isSupabase = Boolean(URL_ && KEY_)
 export const supabase = isSupabase ? createClient(URL_, KEY_) : null
 export const BUCKET = 'media'

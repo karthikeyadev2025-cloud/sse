@@ -45,7 +45,12 @@ export default function Login({ onLogin }) {
     try {
       if (forgot) { await sendReset(email); toast('Password reset link sent to your email'); setForgot(false) }
       else { await signIn(email, pw); await onLogin(); nav('/admin') }
-    } catch (ex) { toast(ex.message || 'Login failed', 'error') }
+    } catch (ex) {
+      const m = String(ex?.message || '')
+      toast(/failed to fetch|network|load failed/i.test(m)
+        ? 'Cannot reach the database. Check your internet connection, disable ad-blockers for this site, or check the Supabase URL/key in the hosting settings.'
+        : m === 'Invalid login credentials' ? 'Wrong email or password' : (m || 'Login failed'), 'error')
+    }
     setBusy(false)
   }
 
